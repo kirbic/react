@@ -8,7 +8,8 @@
     "@pika/plugin-build-node": "^0.9.2",
     "@pika/plugin-build-web": "^0.9.2",
     "@pika/plugin-ts-standard-pkg": "^0.9.2",
-    "semantic-release": "^17.4.2"
+    "semantic-release": "^17.4.2",
+    "semantic-release-plugin-update-version-in-files": "^1.1.0"
   },
   "scripts": {
     "build": "pika build",
@@ -26,7 +27,24 @@
     "branches": "main",
     "plugins": [
       "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator"
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      [
+        "@semantic-release/npm",
+        {
+          "pkgRoot": "./pkg"
+        }
+      ],
+      [
+        "semantic-release-plugin-update-version-in-files",
+        {
+          "files": [
+            "pkg/dist-src/VERSION.js",
+            "pkg/dist-types/VERSION.d.ts",
+            "pkg/*/index.js"
+          ]
+        }
+      ]
     ]
   },
   "@pika/pack": {
@@ -41,5 +59,8 @@
         "@pika/plugin-build-web"
       ]
     ]
+  },
+  "peerDependencies": {
+    "react": "^17.0.1"
   }
 }
