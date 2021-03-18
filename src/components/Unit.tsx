@@ -7,14 +7,14 @@ const plural = (singular: string, plural: string) => (qty: number) =>
   qty > 1 ? plural : singular;
 
 const unitLabel = (unit: UnitType, qty = 1) => {
-  cond<UnitType, any>([
+  cond<string, any>([
     [equals("units"), always(plural("ud.", "uds."))],
     [equals("box"), always(plural("caja", "cajas"))],
     [equals("pallet"), always(plural("palé", "palés"))],
     [equals("item"), always(plural("artículo", "artículos"))],
     [equals("pack"), always(plural("artículo", "artículos"))],
     [T, always(plural(".", ".."))],
-  ])(unit)(qty);
+  ])(unit as string)(qty);
   return unitLabel;
 };
 
