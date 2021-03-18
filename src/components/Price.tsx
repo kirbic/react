@@ -1,9 +1,6 @@
 import React, { useMemo, FC, Children } from "react";
 
-import { paths } from "@kirbic/openapi-types";
-
-type PriceType = paths["/catalog/product/"]["get"]["responses"]["200"]["content"]["application/json"]["items"][0]["prices"][0];
-type Currency = PriceType["currency"];
+import { Price as PriceType, Currency } from "../store/api";
 
 type PriceProps = {
   price?: PriceType;
