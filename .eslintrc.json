@@ -18,6 +18,7 @@
     "import/prefer-default-export": "off",
     "quotes": ["off", "double"],
     "camelcase": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }]
   }
 }
