@@ -7,7 +7,10 @@ export type Currency = Price["currency"];
 export type Unit = Price["unit_type"];
 export type CartActionMode = paths["/cart/{mode}/{price_id}"]["patch"]["parameters"]["path"]["mode"];
 
-const api = axios.create({ baseURL: "https://api.kirbic.com" });
+const api = axios.create({
+  baseURL: "https://api.kirbic.com",
+  withCredentials: true,
+});
 
 const get_headers = (shop_id: string) => ({
   "x-shopcopter-shop": shop_id,
