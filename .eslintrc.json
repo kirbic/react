@@ -19,6 +19,7 @@
     "quotes": ["off", "double"],
     "camelcase": "off",
     "comma-dangle": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
+    "no-use-before-define": "off"
   }
 }

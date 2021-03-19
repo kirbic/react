@@ -23,6 +23,7 @@
     "url": "https://github.com/kirbic/react.git"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.13.8",
     "@pika/pack": "^0.5.0",
     "@pika/plugin-build-node": "^0.9.2",
     "@pika/plugin-build-web": "^0.9.2",

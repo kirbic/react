@@ -30,7 +30,7 @@ export const Unit: React.FC<UnitProps> = ({
   prefix,
   sufix,
   quantity = 1,
-}) => {
+}: UnitProps) => {
   const labeledUnit = useMemo(() => unitLabel(unit, quantity), [
     unit,
     quantity,
