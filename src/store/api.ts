@@ -25,7 +25,7 @@ export const get_cart = async (shop_id: string): Promise<Cart> => {
 };
 
 export const delete_cart = async (shop_id: string): Promise<void> => {
-  await api.delete("/cart", {
+  await api.delete("/cart/", {
     headers: get_headers(shop_id),
   });
 };
