@@ -1,11 +1,12 @@
-import { paths } from "@kirbic/openapi-types";
 import axios from "axios";
+import { Endpoints } from "@kirbic/types";
 
-export type Cart = paths["/cart/"]["get"]["responses"]["200"]["content"]["application/json"];
-export type Price = paths["/catalog/product/"]["get"]["responses"]["200"]["content"]["application/json"]["items"][0]["prices"][0];
+export type Cart = Endpoints["GET /cart/"]["response"]["data"];
+
+export type Price = Endpoints["GET /catalog/product/"]["response"]["data"]["items"][0]["prices"][0];
 export type Currency = Price["currency"];
 export type Unit = Price["unit_type"];
-export type CartActionMode = paths["/cart/{mode}/{price_id}"]["patch"]["parameters"]["path"]["mode"];
+export type CartActionMode = Endpoints["PATCH /cart/{mode}/{price_id}"]["parameters"]["mode"];
 
 const api = axios.create({
   baseURL: "https://api.kirbic.com",
