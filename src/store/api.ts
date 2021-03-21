@@ -34,7 +34,7 @@ export const set_metadata = async (
   shop_id: string,
   metadata: Record<string, unknown>
 ): Promise<Cart> => {
-  const res = await api.post("/cart/metadata", metadata, {
+  const res = await api.post("/cart/metadata/", metadata, {
     headers: get_headers(shop_id),
   });
   return res.data;
