@@ -78,9 +78,6 @@
       ],
       [
         "@pika/plugin-build-types"
-      ],
-      [
-        "@pika/plugin-build-web"
       ]
     ]
   },
