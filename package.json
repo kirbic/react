@@ -21,7 +21,15 @@
   "jest": {
     "testMatch": [
       "**/?(*.)+(spec|test).ts?(x)"
-    ]
+    ],
+    "transform": {
+      "\\.ts?x": [
+        "babel-jest",
+        {
+          "configFile": "./babel-jest.config.js"
+        }
+      ]
+    }
   },
   "repository": {
     "url": "https://github.com/kirbic/react.git"
@@ -84,13 +92,17 @@
   "@pika/pack": {
     "pipeline": [
       [
-        "@pika/plugin-standard-pkg"
+        "@pika/plugin-standard-pkg",
+        {
+          "exclude": [
+            "**/*.spec.*"
+          ],
+          "babelrc": false
+        }
       ],
       [
-        "@pika/plugin-build-node"
-      ],
-      [
-        "@pika/plugin-build-web"
+        "@pika/plugin-build-node",
+        {}
       ],
       [
         "@pika/plugin-build-types"
