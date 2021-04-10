@@ -15,6 +15,7 @@ jobs:
           node-version: "12.x"
       - run: yarn install --frozen-lockfile
       - run: yarn run build
+      - run: yarn run test
       - run: yarn run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}

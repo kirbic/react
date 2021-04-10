@@ -1,5 +1,6 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, ImgHTMLAttributes, useMemo } from "react";
 import * as R from "ramda";
+import PropTypes from "prop-types";
 
 type Transforms = {
   width?: number;
@@ -8,7 +9,6 @@ type Transforms = {
 
 type ImageProps = Transforms & {
   media_id: string;
-  [key: string]: any;
 };
 const shorteners: Record<string, string> = {
   width: "w",
@@ -17,19 +17,26 @@ const shorteners: Record<string, string> = {
 
 const chain_transforms = (t: Transforms) => {
   const to_chain = R.toPairs(t);
-  return to_chain.map(([key, val]) => `${shorteners[key]}:${val}`).join(",");
+  return to_chain
+    .map(([key, val]) => val && `${shorteners[key]}:${val}`)
+    .filter((e) => e)
+    .join(",");
 };
 
-export const Image: FC<ImageProps> = ({
+export const Image: FC<ImageProps & ImgHTMLAttributes<any>> = ({
   media_id,
-  width,
-  height,
   ...props
 }) => {
   const url = useMemo(() => {
     const base = "https://cdn.kirbic.com";
-    const transforms = chain_transforms({ width, height });
+    const transforms = chain_transforms(R.pick(Object.keys(shorteners), props));
     return `${base}/@${transforms}/${media_id}`;
-  }, []);
+  }, R.props(Object.keys(shorteners), props));
+
   return <img src={url} {...props} />;
+};
+Image.propTypes = {
+  media_id: PropTypes.string.isRequired,
+  width: PropTypes.number,
+  height: PropTypes.number,
 };
