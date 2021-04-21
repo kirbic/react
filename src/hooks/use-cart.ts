@@ -19,7 +19,7 @@ export const useCart = (): CartHook & Actions => {
     loading,
     cart,
     redirect_to_checkout: () => {
-      const checkoutUrl = `https://checkout.kirbic.com/shop/${shop_id}`;
+      const checkoutUrl = `https://checkout.kirbic.com/checkout?shop=${shop_id}`;
       window.location.href = checkoutUrl;
     },
   };
