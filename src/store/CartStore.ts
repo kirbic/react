@@ -34,9 +34,13 @@ const initialState: State = {
 
 const private_fetch = () => async ({ setState, getState }: StoreApi) => {
   const { shop_id } = getState();
-  const cartObtained = await get_cart(shop_id);
-  setState({ cart: cartObtained, loading: false });
-  console.log("[kibic-cart] refreshed!");
+  try {
+    const cartObtained = await get_cart(shop_id);
+    setState({ cart: cartObtained, loading: false });
+    console.log("[kibic-cart] refreshed!");
+  } catch (error) {
+    console.error(`Error, cannot fetch cart from API, invalid data`);
+  }
 };
 
 const cart_action = (mode: CartActionMode) => (
