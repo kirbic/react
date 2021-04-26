@@ -5,24 +5,17 @@ import {
   StoreActionApi,
 } from "react-sweet-state";
 
-import {
-  cart_action_api,
-  delete_cart,
-  get_cart,
-  set_metadata,
-  Cart,
-  CartActionMode,
-} from "./api";
+import { Cart, CartActionMode, ApiConfig, get_api, Api } from "./api";
 
 type State = {
-  shop_id: string;
+  api: Api;
   cart: Cart;
   loading: boolean;
 };
 type StoreApi = StoreActionApi<State>;
 
 const initialState: State = {
-  shop_id: "1234",
+  api: get_api({ shop_id: "invalid-shop" }),
   cart: {
     lines: [],
     total: "0.00",
@@ -33,9 +26,9 @@ const initialState: State = {
 };
 
 const private_fetch = () => async ({ setState, getState }: StoreApi) => {
-  const { shop_id } = getState();
+  const { api } = getState();
   try {
-    const cartObtained = await get_cart(shop_id);
+    const cartObtained = await api.get_cart();
     setState({ cart: cartObtained, loading: false });
     console.log("[kibic-cart] refreshed!");
   } catch (error) {
@@ -47,8 +40,8 @@ const cart_action = (mode: CartActionMode) => (
   price_id: string,
   quantity: number = 1
 ) => async ({ getState, dispatch }: StoreApi) => {
-  const { shop_id } = getState();
-  await cart_action_api(shop_id, mode, price_id, quantity);
+  const { api } = getState();
+  await api.cart_action_api(mode, price_id, quantity);
   await dispatch(private_fetch());
 };
 
@@ -62,16 +55,16 @@ const actions = {
   /* Cart actions */
   cart_refresh: private_fetch,
   cart_delete: () => async ({ getState, dispatch }: StoreApi) => {
-    const { shop_id } = getState();
-    await delete_cart(shop_id);
+    const { api } = getState();
+    await api.delete_cart();
     await dispatch(private_fetch());
   },
   cart_set_metadata: (metadata: Record<string, any>) => async ({
     getState,
     dispatch,
   }: StoreApi) => {
-    const { shop_id } = getState();
-    await set_metadata(shop_id, metadata);
+    const { api } = getState();
+    await api.set_metadata(metadata);
     await dispatch(private_fetch());
   },
 };
@@ -85,15 +78,14 @@ export const CartStore = createStore<State, Actions>({
 
 export const useCartStore = createHook(CartStore);
 
-type ContainerProps = { shop_id: string };
-export const CartContainer = createContainer<State, Actions, ContainerProps>(
+export const CartContainer = createContainer<State, Actions, ApiConfig>(
   CartStore,
   {
     onInit: () => async (
       { setState, dispatch }: StoreApi,
-      { shop_id }: ContainerProps
+      config: ApiConfig
     ) => {
-      await setState({ shop_id });
+      await setState({ api: get_api(config) });
       await dispatch(private_fetch());
     },
   }

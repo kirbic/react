@@ -1,5 +1,6 @@
 import { useCartStore } from "../store/CartStore";
 import { Cart } from "../store/api";
+import { useKirbic } from "../components";
 
 export type CartHook = {
   hasItems: boolean;
@@ -11,8 +12,8 @@ export type CartHook = {
 type Actions = ReturnType<typeof useCartStore>["1"];
 
 export const useCart = (): CartHook & Actions => {
-  const [{ cart, loading, shop_id }, actions] = useCartStore();
-
+  const [{ cart, loading }, actions] = useCartStore();
+  const { shop_id } = useKirbic();
   return {
     ...actions,
     hasItems: cart.lines.length > 0,
