@@ -1394,10 +1394,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@kirbic/apikit@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@kirbic/apikit/-/apikit-1.0.5.tgz#7e5ec2e038b424a5eb2b22af8441312c714c1025"
-  integrity sha512-TgE1xuEnipjxXJ02tqKTo7lkPEC2JhB+5zq6Y1vkvZBlXju/TFiM5cg3InRFhLbOp9A/tiF2Ws8HGw7cZJskxg==
+"@kirbic/apikit@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@kirbic/apikit/-/apikit-1.0.6.tgz#a25d7cf9e2d97b11f8e82466d4448aa11321bae1"
+  integrity sha512-vtgfZ88/933Aj3qNUNl5YK0ZeZ+7uDcVB/pUH0T20me+iscxs8qvgDtgFPlmFxMxBDP/etuAvGfn+Jpb1URsTQ==
   dependencies:
     axios "^0.21.1"
 
