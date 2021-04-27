@@ -1,6 +1,6 @@
 import React, { useMemo, FC, Children } from "react";
 
-import { Price as PriceType, Currency } from "@kirbic/apikit";
+import { Price as PriceType, Currency } from "@kirbic/apikit/kit";
 
 type PriceProps = {
   price?: PriceType;

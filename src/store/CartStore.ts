@@ -4,13 +4,15 @@ import {
   createContainer,
   StoreActionApi,
 } from "react-sweet-state";
+
 import {
-  ApiConfig,
+  kirbic_api_kit,
   ApiKit,
   Cart,
   CartActionMode,
-  kirbic_api_kit,
-} from "@kirbic/apikit";
+} from "@kirbic/apikit/kit";
+
+import { ApiConfig } from "@kirbic/apikit/api";
 
 type State = {
   api: ApiKit;
