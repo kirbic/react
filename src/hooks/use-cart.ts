@@ -1,5 +1,5 @@
 import { useCartStore } from "../store/CartStore";
-import { Cart } from "../lib/kit";
+import { Cart } from "@kirbic/apikit/dist-types";
 import { useKirbic } from "../components";
 
 export type CartHook = {

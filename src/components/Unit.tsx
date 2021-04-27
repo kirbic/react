@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { equals, always, T, cond } from "ramda";
 
-import { Unit as UnitType } from "../lib/kit";
+import { Unit as UnitType } from "@kirbic/apikit";
 
 const plural = (singular: string, plural: string) => (qty: number) =>
   qty > 1 ? plural : singular;

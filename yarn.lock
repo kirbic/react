@@ -1394,6 +1394,13 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@kirbic/apikit@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@kirbic/apikit/-/apikit-1.0.2.tgz#78d49b66fbf5c60707515d2e0e1cf48090308500"
+  integrity sha512-FkhTuG28LVwS5ImI8BVkved5RPhExNvg/vBfFcVExN+Q2VXZVWKkFSrSolR3cu2QIgcZ+252ZcU173E3Utcp0g==
+  dependencies:
+    axios "^0.21.1"
+
 "@kirbic/openapi-types@^1.1.5":
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/@kirbic/openapi-types/-/openapi-types-1.1.5.tgz#0dc5dfcff21b71987efa872ea207874e10cf2fe3"
