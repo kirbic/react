@@ -1,4 +1,4 @@
-import axios from "axios";
+import { get_api, ApiConfig } from "./api";
 import { Endpoints } from "@kirbic/types";
 
 export type Cart = Endpoints["GET /cart/"]["response"]["data"];
@@ -8,27 +8,10 @@ export type Currency = Price["currency"];
 export type Unit = Price["unit_type"];
 export type CartActionMode = Endpoints["PATCH /cart/{mode}/{price_id}"]["parameters"]["mode"];
 
-export type ApiConfig = {
-  shop_id: string;
-  access_token?: string;
-};
+export type ApiKit = ReturnType<typeof kirbic_api_kit>;
 
-export const get_api = ({ shop_id, access_token }: ApiConfig) => {
-  if (!shop_id) {
-    throw new Error("Missing shop_id");
-  }
-  let headers: Record<string, string> = {
-    "x-shopcopter-shop": shop_id,
-  };
-  if (access_token) {
-    headers = { ...headers, Authorization: `Bearer ${access_token}` };
-  }
-
-  const api = axios.create({
-    baseURL: "https://api.kirbic.com",
-    withCredentials: true,
-    headers,
-  });
+export const kirbic_api_kit = (config: ApiConfig) => {
+  const api = get_api(config);
 
   const get_cart = async (): Promise<Cart> => {
     const res = await api.get<Cart>("/cart");
@@ -64,5 +47,3 @@ export const get_api = ({ shop_id, access_token }: ApiConfig) => {
     set_metadata,
   };
 };
-
-export type Api = ReturnType<typeof get_api>;

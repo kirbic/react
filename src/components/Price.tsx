@@ -1,6 +1,6 @@
 import React, { useMemo, FC, Children } from "react";
 
-import { Price as PriceType, Currency } from "../store/api";
+import { Price as PriceType, Currency } from "../lib/kit";
 
 type PriceProps = {
   price?: PriceType;
