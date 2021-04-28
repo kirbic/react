@@ -5,24 +5,19 @@ import {
   StoreActionApi,
 } from "react-sweet-state";
 
-import {
-  kirbic_api_kit,
-  ApiKit,
-  Cart,
-  CartActionMode,
-} from "@kirbic/apikit/kit";
+import { KirbicApiKit, Cart, CartActionMode } from "@kirbic/apikit/kit";
 
 import { ApiConfig } from "@kirbic/apikit/api";
 
 type State = {
-  api: ApiKit;
+  api: KirbicApiKit;
   cart: Cart;
   loading: boolean;
 };
 type StoreApi = StoreActionApi<State>;
 
 const initialState: State = {
-  api: kirbic_api_kit({ shop_id: "invalid-shop" }),
+  api: KirbicApiKit.create({ shop_id: "invalid-shop" }),
   cart: {
     lines: [],
     total: "0.00",
@@ -92,7 +87,7 @@ export const CartContainer = createContainer<State, Actions, ApiConfig>(
       { setState, dispatch }: StoreApi,
       config: ApiConfig
     ) => {
-      await setState({ api: kirbic_api_kit(config) });
+      await setState({ api: KirbicApiKit.create(config) });
       await dispatch(private_fetch());
     },
   }

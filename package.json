@@ -7,7 +7,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@kirbic/apikit": "^1.0.6",
+    "@kirbic/apikit": "^1.0.12",
     "axios": "^0.21.1",
     "prop-types": "^15.7.2",
     "ramda": "^0.27.1",
